@@ -1,0 +1,41 @@
+{
+  "invoiceData": [
+    {
+      "0": {
+        "invoiceId": "1612-2373",
+        "invoiceDate": "12/16/2024",
+        "cashAmount": "0",
+        "cardAmount": "0",
+        "creditAmount": "0",
+        "totalCashAmount": "0",
+        "totalCardAmount": "0.00",
+        "totalAmount": "9.90",
+        "totalDiscount": "1.10",
+        "totalNetAmount": "9.90",
+        "items": [
+          {
+            "itemDescription": "Moniter",
+            "itemRate": "2",
+            "itemQuantity": "2",
+            "itemDiscount": "0.40",
+            "itemNetAmount": "3.60"
+          },
+          {
+            "itemDescription": "Mouse",
+            "itemRate": "3",
+            "itemQuantity": "1",
+            "itemDiscount": "0.30",
+            "itemNetAmount": "2.70"
+          },
+          {
+            "itemDescription": "sadsd",
+            "itemRate": "4",
+            "itemQuantity": "1",
+            "itemDiscount": "0.40",
+            "itemNetAmount": "3.60"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+
+.invoice{
+        width: 210mm; /* A4 width */
+        height: 297mm; /* A4 height */
+        background-color: white; /* Optional: background color for better visualization */
+        border: 1px solid #ccc; /* Optional: border to make the container visible */
+        margin: 10px auto; /* Center the container */
+        padding: 20px; /* Optional: padding for inner content spacing */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */      
+}
+.head{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #ccc;
+}
+th{    font-size: 14px; }
+  /* Media queries for responsiveness */
+  @media (max-width: 1200px) {
+    .invoice {
+      width: 90%; /* Adjust width for smaller screens */
+      height: auto; /* Adjust height automatically */
+    }
+  
+    .details {
+      flex-direction: column; /* Stack details vertically */
+    }
+  
+    th {
+      font-size: 12px; /* Reduce font size */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .invoice {
+      width: 100%; /* Full width for mobile screens */
+      padding: 10px; /* Reduce padding */
+      margin: 10px 0; /* Adjust margin */
+    }
+  
+    .head {
+      align-items: flex-start; /* Align items to the start */
+    }
+  
+    .details {
+      padding: 10px 0; /* Adjust padding */
+      background-color: #eee; /* Change background color */
+    }
+  
+    th {
+      font-size: 10px; /* Further reduce font size */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .invoice {
+      padding: 5px; /* Further reduce padding */
+    }
+  
+    .details {
+      background-color: #fff; /* Change background color */
+    }
+  
+    th {
+      font-size: 8px; /* Further reduce font size */
+    }
+  }
+  
+  .modal-dialog {
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+    width: 100%;
+  }
+  
+  .table {
+    width: 100%;
+  }
+  
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    .invoice, .invoice * {
+      visibility: visible;
+    }
+    .btn-print {
+      display: none;
+    }
+    .invoice {
+      position: absolute;
+      left: 0;
+      top: 0;
+      
+    }
+    
+  }
+  
+  
