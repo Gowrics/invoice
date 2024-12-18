@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { FormContext } from "./FormContext";
 import "./style.css";
-import ItemList from "./ItemList";
-
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { useNavigate } from "react-router-dom";
 
 const BillSummary = () => {
   const { invoiceData } = useContext(FormContext);
+
+  const navigate = useNavigate(); // Initialize the navigate function
 
   if (!invoiceData.length) {
     return <p>Loading...</p>;
@@ -35,10 +36,23 @@ const BillSummary = () => {
       });
   };
 
+  const handlePrint = () => {
+    setTimeout(() => {
+      window.print();
+      navigate("/home");
+      window.scrollTo(0, 0); // Scroll to top after printing
+      window.location.reload("/");
+      // Reload the page after printing
+    }, 500);
+  };
+
   return (
     <div id="invoice-section" className="invoice">
       <div className="headersec">
-        <h1>Logo Consulting Pvt Ltd</h1>
+        <center>
+          {" "}
+          <h1>Logo Consulting Pvt Ltd</h1>
+        </center>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <p>Invoice Number: {invoiceData[0]?.invoiceId || "0.00"}</p>
           <p>Invoice Date: {invoiceData[0]?.invoiceDate || "0.00"}</p>
@@ -60,15 +74,40 @@ const BillSummary = () => {
         </div>
       </div>
       <div className="table-responsive">
-        <ItemList />
+        <table className="table mt-5 border table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Item Description</th>
+              <th scope="col">Item Rate</th>
+              <th scope="col">Item Quantity</th>
+              <th scope="col">Item Discount</th>
+              <th scope="col">Item Net Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {invoiceData[0].items && invoiceData[0].items.length > 0 ? (
+              invoiceData[0].items.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.itemDescription}</td>
+                  <td>{item.itemRate}</td>
+                  <td>{item.itemQuantity}</td>
+                  <td>{item.itemDiscount}</td>
+                  <td>{item.itemNetAmount}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="text-center">
+                  No items available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
         <button
           type="button"
           className="btn btn-primary btn-print me-5"
-          onClick={() => {
-            setTimeout(() => {
-              window.print();
-            }, 500);
-          }}
+          onClick={handlePrint}
         >
           Print
         </button>

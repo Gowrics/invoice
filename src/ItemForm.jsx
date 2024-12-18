@@ -4,6 +4,7 @@ import "./style.css";
 import ItemList from "./ItemList";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import InvoiceDisplay from "./ItemSearch";
 
 const ItemForm = () => {
   const {
@@ -16,40 +17,6 @@ const ItemForm = () => {
   } = useContext(FormContext);
 
   const navigate = useNavigate(); // Initialize the navigate function
-
-  // Handle form submission
-  // const handleSubmit = () => {
-  //   const lastInvoice =
-  //     invoiceData.length > 0 ? invoiceData[invoiceData.length - 1] : {};
-
-  //   // Ensure default values if fields are missing
-  //   const currentTotalAmount = parseFloat(lastInvoice.totalAmount) || 0;
-  //   const currentDisAmount = parseFloat(lastInvoice.totalDiscount) || 0;
-  //   const currentNetAmount = parseFloat(lastInvoice.totalNetAmount) || 0;
-
-  //   // Calculate the new total amounts
-  //   const newTotalAmount = currentTotalAmount + form.itemNetAmount;
-  //   const newDisAmount = currentDisAmount + form.itemDiscount;
-  //   const newNetAmount = currentNetAmount + form.itemNetAmount;
-
-  //   const newUser = {
-  //     ...invoiceData,
-  //     totalAmount: newTotalAmount,
-  //     totalDiscount: newDisAmount,
-  //     totalNetAmount: newNetAmount,
-  //     // totalCashAmount: newCashAmount.toFixed(2),
-  //     // totalCardAmount: newCardAmount.toFixed(2),
-  //     // totalCredid: newCreditAmount.toFixed(2),
-  //   };
-  //   console.log("New Total Amount:", invoiceData);
-  //   // Send updated data to backend
-  //   axios
-  //     .post("http://localhost:8004/invoiceData", invoiceData)
-  //     .then(() => {
-  //       console.log("Invoice updated successfully", invoiceData);
-  //     })
-  //     .catch((error) => console.error("Error updating invoice:", error));
-  // };
 
   return (
     <div className="invoice">
@@ -64,10 +31,15 @@ const ItemForm = () => {
         </div>
         <div className="details">
           <div>
-            <h6>Total Amount: {invoiceData[0]?.totalAmount || "0.00"}</h6>
-            <h6>Total Discount: {invoiceData[0]?.totalDiscount || "0.00"}</h6>
             <h6>
-              Total Net Amount: {invoiceData[0]?.totalNetAmount || "0.00"}
+              Total Amount: {Math.round(invoiceData[0]?.totalAmount || 0)}
+            </h6>
+            <h6>
+              Total Discount: {Math.round(invoiceData[0]?.totalDiscount || 0)}
+            </h6>
+            <h6>
+              Total Net Amount:{" "}
+              {Math.round(invoiceData[0]?.totalNetAmount || 0)}
             </h6>
           </div>
         </div>
@@ -161,6 +133,9 @@ const ItemForm = () => {
       {/* Table Section */}
       <div className="table-responsive">
         <ItemList />
+        <Link to="/itemsearch" className="btn btn-primary">
+          Invoice Search
+        </Link>
       </div>
     </div>
   );

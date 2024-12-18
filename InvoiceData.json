@@ -1,41 +1,613 @@
 {
   "invoiceData": [
     {
-      "0": {
-        "invoiceId": "1612-2373",
-        "invoiceDate": "12/16/2024",
-        "cashAmount": "0",
-        "cardAmount": "0",
-        "creditAmount": "0",
-        "totalCashAmount": "0",
-        "totalCardAmount": "0.00",
-        "totalAmount": "9.90",
-        "totalDiscount": "1.10",
-        "totalNetAmount": "9.90",
-        "items": [
-          {
-            "itemDescription": "Moniter",
-            "itemRate": "2",
-            "itemQuantity": "2",
-            "itemDiscount": "0.40",
-            "itemNetAmount": "3.60"
-          },
-          {
-            "itemDescription": "Mouse",
-            "itemRate": "3",
-            "itemQuantity": "1",
-            "itemDiscount": "0.30",
-            "itemNetAmount": "2.70"
-          },
-          {
-            "itemDescription": "sadsd",
-            "itemRate": "4",
-            "itemQuantity": "1",
-            "itemDiscount": "0.40",
-            "itemNetAmount": "3.60"
-          }
-        ]
-      }
+      "id": "e4a8",
+      "invoiceId": "1812-3194",
+      "invoiceDate": "12/17/2024",
+      "cashAmount": "4050.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "4050.00",
+      "totalDiscount": "450.00",
+      "totalNetAmount": "4050.00",
+      "items": [
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "400",
+          "itemQuantity": "2",
+          "itemDiscount": "80.00",
+          "itemNetAmount": "720.00"
+        },
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "3300",
+          "itemQuantity": "1",
+          "itemDiscount": "330.00",
+          "itemNetAmount": "2970.00"
+        },
+        {
+          "itemDescription": "printer",
+          "itemRate": "200",
+          "itemQuantity": "2",
+          "itemDiscount": "40.00",
+          "itemNetAmount": "360.00"
+        }
+      ]
+    },
+    {
+      "id": "f237",
+      "invoiceId": "1812-3194",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "4050.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "4050.00",
+      "totalDiscount": "450.00",
+      "totalNetAmount": "4050.00",
+      "items": [
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "400",
+          "itemQuantity": "2",
+          "itemDiscount": "80.00",
+          "itemNetAmount": "720.00"
+        },
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "3300",
+          "itemQuantity": "1",
+          "itemDiscount": "330.00",
+          "itemNetAmount": "2970.00"
+        },
+        {
+          "itemDescription": "printer",
+          "itemRate": "200",
+          "itemQuantity": "2",
+          "itemDiscount": "40.00",
+          "itemNetAmount": "360.00"
+        }
+      ]
+    },
+    {
+      "id": "a645",
+      "invoiceId": "1812-3194",
+      "invoiceDate": "12/15/2024",
+      "cashAmount": "18000.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "18000.00",
+      "totalDiscount": "2000.00",
+      "totalNetAmount": "18000.00",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "4000",
+          "itemQuantity": "5",
+          "itemDiscount": "2000.00",
+          "itemNetAmount": "18000.00",
+          "cashAmount": "4050",
+          "cardAmount": "0",
+          "creditAmount": "0"
+        }
+      ]
+    },
+    {
+      "id": "302d",
+      "invoiceId": "1812-2184",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "34560.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "34560.00",
+      "totalDiscount": "3840.00",
+      "totalNetAmount": "34560.00",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "6600",
+          "itemQuantity": "4",
+          "itemDiscount": "2640.00",
+          "itemNetAmount": "23760.00"
+        },
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "3000",
+          "itemQuantity": "4",
+          "itemDiscount": "1200.00",
+          "itemNetAmount": "10800.00"
+        }
+      ]
+    },
+    {
+      "id": "6ad1",
+      "invoiceId": "1812-2643",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "36000.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "36000.00",
+      "totalDiscount": "4000.00",
+      "totalNetAmount": "36000.00",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "4000",
+          "itemQuantity": "3",
+          "itemDiscount": "1200.00",
+          "itemNetAmount": "10800.00"
+        },
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "4000",
+          "itemQuantity": "3",
+          "itemDiscount": "1200.00",
+          "itemNetAmount": "10800.00"
+        },
+        {
+          "itemDescription": "sada",
+          "itemRate": "4000",
+          "itemQuantity": "4",
+          "itemDiscount": "1600.00",
+          "itemNetAmount": "14400.00"
+        }
+      ]
+    },
+    {
+      "id": "695a",
+      "invoiceId": "1812-5804",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "1080.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "1080.00",
+      "totalDiscount": "120.00",
+      "totalNetAmount": "1080.00",
+      "items": [
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "300",
+          "itemQuantity": "4",
+          "itemDiscount": "120.00",
+          "itemNetAmount": "1080.00"
+        }
+      ]
+    },
+    {
+      "id": "46f3",
+      "invoiceId": "1812-4785",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "450.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "450.00",
+      "totalDiscount": "50.00",
+      "totalNetAmount": "450.00",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "500",
+          "itemQuantity": "1",
+          "itemDiscount": "50.00",
+          "itemNetAmount": "450.00"
+        }
+      ]
+    },
+    {
+      "id": "fa75",
+      "invoiceId": "1812-4785",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "450.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "450.00",
+      "totalDiscount": "50.00",
+      "totalNetAmount": "450.00",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "500",
+          "itemQuantity": "1",
+          "itemDiscount": "50.00",
+          "itemNetAmount": "450.00"
+        }
+      ]
+    },
+    {
+      "id": "3112",
+      "invoiceId": "1812-1331",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "14.40",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "14.40",
+      "totalDiscount": "1.60",
+      "totalNetAmount": "14.40",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "4",
+          "itemQuantity": "4",
+          "itemDiscount": "1.60",
+          "itemNetAmount": "14.40"
+        }
+      ]
+    },
+    {
+      "id": "f44b",
+      "invoiceId": "1812-7518",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "359.00",
+      "cardAmount": "0.10",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "359.10",
+      "totalDiscount": "39.90",
+      "totalNetAmount": "359.10",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "33",
+          "itemQuantity": "3",
+          "itemDiscount": "9.90",
+          "itemNetAmount": "89.10"
+        },
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "300",
+          "itemQuantity": "1",
+          "itemDiscount": "30.00",
+          "itemNetAmount": "270.00"
+        }
+      ]
+    },
+    {
+      "id": "1596",
+      "invoiceId": "1812-2324",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "33.30",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "33.30",
+      "totalDiscount": "3.70",
+      "totalNetAmount": "33.30",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "5",
+          "itemQuantity": "5",
+          "itemDiscount": "2.50",
+          "itemNetAmount": "22.50"
+        },
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "4",
+          "itemQuantity": "3",
+          "itemDiscount": "1.20",
+          "itemNetAmount": "10.80"
+        }
+      ]
+    },
+    {
+      "id": "23ac",
+      "invoiceId": "1812-8292",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "8.10",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "8.10",
+      "totalDiscount": "0.90",
+      "totalNetAmount": "8.10",
+      "items": [
+        {
+          "itemDescription": "Moniter2",
+          "itemRate": "3",
+          "itemQuantity": "3",
+          "itemDiscount": "0.90",
+          "itemNetAmount": "8.10"
+        }
+      ]
+    },
+    {
+      "id": "9447",
+      "invoiceId": "1812-3228",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "9.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "9.00",
+      "totalDiscount": "1.00",
+      "totalNetAmount": "9.00",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "10",
+          "itemQuantity": "1",
+          "itemDiscount": "1.00",
+          "itemNetAmount": "9.00"
+        }
+      ]
+    },
+    {
+      "id": "ef73",
+      "invoiceId": "1812-5805",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "720.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "720.00",
+      "totalDiscount": "80.00",
+      "totalNetAmount": "720.00",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "400",
+          "itemQuantity": "2",
+          "itemDiscount": "80.00",
+          "itemNetAmount": "720.00"
+        }
+      ]
+    },
+    {
+      "id": "422d",
+      "invoiceId": "1812-5805",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "720.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "720.00",
+      "totalDiscount": "80.00",
+      "totalNetAmount": "720.00",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "400",
+          "itemQuantity": "2",
+          "itemDiscount": "80.00",
+          "itemNetAmount": "720.00"
+        }
+      ]
+    },
+    {
+      "id": "78db",
+      "invoiceId": "1812-1023",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "7.20",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "7.20",
+      "totalDiscount": "0.80",
+      "totalNetAmount": "7.20",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "4",
+          "itemQuantity": "2",
+          "itemDiscount": "0.80",
+          "itemNetAmount": "7.20"
+        }
+      ]
+    },
+    {
+      "id": "1b1d",
+      "invoiceId": "1812-5467",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "158.40",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "158.40",
+      "totalDiscount": "17.60",
+      "totalNetAmount": "158.40",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "44",
+          "itemQuantity": "4",
+          "itemDiscount": "17.60",
+          "itemNetAmount": "158.40"
+        }
+      ]
+    },
+    {
+      "id": "1175",
+      "invoiceId": "1812-8260",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "32.40",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "32.40",
+      "totalDiscount": "3.60",
+      "totalNetAmount": "32.40",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "6",
+          "itemQuantity": "6",
+          "itemDiscount": "3.60",
+          "itemNetAmount": "32.40"
+        }
+      ]
+    },
+    {
+      "id": "35b7",
+      "invoiceId": "1812-1650",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "0.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "0.00",
+      "totalDiscount": "0.00",
+      "totalNetAmount": "0.00",
+      "items": []
+    },
+    {
+      "id": "11b1",
+      "invoiceId": "1812-2796",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "91.80",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "91.80",
+      "totalDiscount": "10.20",
+      "totalNetAmount": "91.80",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "34",
+          "itemQuantity": "3",
+          "itemDiscount": "10.20",
+          "itemNetAmount": "91.80"
+        }
+      ]
+    },
+    {
+      "id": "bc41",
+      "invoiceId": "1812-5583",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "3.60",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "3.60",
+      "totalDiscount": "0.40",
+      "totalNetAmount": "3.60",
+      "items": [
+        {
+          "itemDescription": "Mouse",
+          "itemRate": "4",
+          "itemQuantity": "1",
+          "itemDiscount": "0.40",
+          "itemNetAmount": "3.60"
+        }
+      ]
+    },
+    {
+      "id": "72a7",
+      "invoiceId": "1812-6323",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "0.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "0.00",
+      "totalDiscount": "0.00",
+      "totalNetAmount": "0.00",
+      "items": []
+    },
+    {
+      "id": "830e",
+      "invoiceId": "1812-6323",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "89.10",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "89.10",
+      "totalDiscount": "9.90",
+      "totalNetAmount": "89.10",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "33",
+          "itemQuantity": "3",
+          "itemDiscount": "9.90",
+          "itemNetAmount": "89.10"
+        }
+      ]
+    },
+    {
+      "id": "48df",
+      "invoiceId": "1812-7937",
+      "invoiceDate": "12/18/2024",
+      "cashAmount": "1007.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": "",
+      "totalCardAmount": "",
+      "totalCreditAmount": "",
+      "totalAmount": "1007.00",
+      "totalDiscount": "111.90",
+      "totalNetAmount": "1007.10",
+      "items": [
+        {
+          "itemDescription": "rdf",
+          "itemRate": "3",
+          "itemQuantity": "3",
+          "itemDiscount": "0.90",
+          "itemNetAmount": "8.10"
+        },
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "555",
+          "itemQuantity": "2",
+          "itemDiscount": "111.00",
+          "itemNetAmount": "999.00"
+        }
+      ]
     }
   ]
 }

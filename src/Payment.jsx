@@ -6,58 +6,75 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Payment = () => {
-  const { invoiceData, form, handleChange } = useContext(FormContext);
+  const { invoiceData, setInvoiceData, form, handleChange } =
+    useContext(FormContext);
 
   const navigate = useNavigate(); // Initialize the navigate function
 
   // Handle form submission
+
   const handleSubmit = () => {
     const lastInvoice =
       invoiceData.length > 0 ? invoiceData[invoiceData.length - 1] : {};
 
     // Ensure default values if fields are missing
-    const currentTotalAmount = parseFloat(lastInvoice.totalAmount) || 0;
+    const currentTotalAmount = parseInt(lastInvoice.totalAmount) || 0;
     const currentDisAmount = parseFloat(lastInvoice.totalDiscount) || 0;
     const currentNetAmount = parseFloat(lastInvoice.totalNetAmount) || 0;
 
-    // Calculate the new total amounts
-    const newTotalAmount = currentTotalAmount + form.itemNetAmount;
-    const newDisAmount = currentDisAmount + form.itemDiscount;
-    const newNetAmount = currentNetAmount + form.itemNetAmount;
+    // Use `form` values to update amounts
+    const formItemNetAmount = parseFloat(form.itemNetAmount) || 0;
+    const formItemDiscount = parseFloat(form.itemDiscount) || 0;
+
+    const newTotalAmount = currentTotalAmount + formItemNetAmount;
+    const newDisAmount = currentDisAmount + formItemDiscount;
+    const newNetAmount = currentNetAmount + formItemNetAmount;
 
     // Sum of Cash, Card, and Credit Amount
-    const cashAmount = parseFloat(invoiceData[0].cashAmount) || 0;
-    const cardAmount = parseFloat(invoiceData[0].cardAmount) || 0;
-    const creditAmount = parseFloat(invoiceData[0].creditAmount) || 0;
+    const cashAmount = parseFloat(lastInvoice.cashAmount) || 0;
+    const cardAmount = parseFloat(lastInvoice.cardAmount) || 0;
+    const creditAmount = parseFloat(lastInvoice.creditAmount) || 0;
 
     const totalPayment = cashAmount + cardAmount + creditAmount;
-    console.log("----", totalPayment, newTotalAmount);
-    // Check if the sum of amounts matches the totalAmount
-    if (totalPayment === newTotalAmount) {
-      const newUser = {
-        ...invoiceData,
-        totalAmount: newTotalAmount,
-        totalDiscount: newDisAmount,
-        totalNetAmount: newNetAmount,
-        cashAmount: cashAmount,
-        cardAmount: cardAmount,
-        creditAmount: creditAmount,
+
+    console.log("Total Payment:", totalPayment);
+    console.log("New Total Amount:", newTotalAmount);
+
+    // Use a tolerance to compare floating-point numbers
+    const tolerance = 0.01; // Define a small acceptable error margin
+    if (totalPayment > newTotalAmount) {
+      alert(`Balance: ${totalPayment - newTotalAmount}`);
+    }
+
+    if (Math.abs(totalPayment - newTotalAmount) < tolerance) {
+      const updatedInvoice = {
+        ...lastInvoice,
+        totalAmount: newTotalAmount.toFixed(2), // Format to 2 decimal places
+        totalDiscount: newDisAmount.toFixed(2),
+        totalNetAmount: newNetAmount.toFixed(2),
+        cashAmount: cashAmount.toFixed(2),
+        cardAmount: cardAmount.toFixed(2),
+        creditAmount: creditAmount.toFixed(2),
       };
 
-      console.log("New Total Amount:", newUser);
+      console.log("Updated Invoice:", updatedInvoice);
+
       // Send updated data to backend
       axios
-        .post("http://localhost:8004/invoiceData", newUser)
+        .post("http://localhost:8004/invoiceData", updatedInvoice)
         .then(() => {
-          console.log("Invoice updated successfully", newUser);
+          console.log("Invoice updated successfully", updatedInvoice);
           navigate("/billsummary");
         })
         .catch((error) => console.error("Error updating invoice:", error));
     } else {
       alert(
-        `Total payment (${totalPayment}) does not match the total amount (${newTotalAmount}). Please adjust the amounts.`
+        `Total payment (${totalPayment.toFixed(
+          2
+        )}) does not match the total amount (${newTotalAmount.toFixed(
+          2
+        )}). Please adjust the amounts.`
       );
-      return; // Stop the form submission if amounts don't match
     }
   };
 

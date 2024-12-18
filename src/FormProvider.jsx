@@ -33,15 +33,15 @@ export const FormProvider = ({ children }) => {
     {
       invoiceId: generateInvoiceNo(),
       invoiceDate: new Date().toLocaleDateString(),
-      cashAmount: "0",
-      cardAmount: "0",
-      creditAmount: "0",
-      totalCashAmount: "0",
-      totalCardAmount: "0.00",
-      totalCreditAmount: "0",
-      totalAmount: "0.00", // This should hold the sum of all items' net amounts
-      totalDiscount: "0.00", // This should hold the sum of all items' discounts
-      totalNetAmount: "0.00", // This should hold the sum of all items' net amounts after discount
+      cashAmount: "",
+      cardAmount: "",
+      creditAmount: "",
+      totalCashAmount: "",
+      totalCardAmount: "",
+      totalCreditAmount: "",
+      totalAmount: "", // This should hold the sum of all items' net amounts
+      totalDiscount: "", // This should hold the sum of all items' discounts
+      totalNetAmount: "", // This should hold the sum of all items' net amounts after discount
       items: [],
     },
   ]);
@@ -89,6 +89,15 @@ export const FormProvider = ({ children }) => {
 
   // Handle form submission (Add item)
   const handleAddItem = () => {
+    if (
+      !form.itemNetAmount ||
+      !form.itemDiscount ||
+      isNaN(parseFloat(form.itemNetAmount)) ||
+      isNaN(parseFloat(form.itemDiscount))
+    ) {
+      alert("Please fill in all required fields before adding an item.");
+      return;
+    }
     const newItem = { ...form };
 
     // Add the new item to the items array
@@ -149,6 +158,7 @@ export const FormProvider = ({ children }) => {
       value={{
         form,
         invoice,
+        setForm,
         handleChange,
         handleAddItem,
         invoiceData,
