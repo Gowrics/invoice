@@ -3,20 +3,20 @@ import { FormContext } from "./FormContext";
 import "./style.css";
 import ItemList from "./ItemList";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import InvoiceDisplay from "./ItemSearch";
+// import axios from "axios";
+// import InvoiceDisplay from "./ItemSearch";
 
 const ItemForm = () => {
-  const {
-    form,
-    invoice,
-    handleChange,
-    totalAmount,
-    invoiceData,
-    handleAddItem,
-  } = useContext(FormContext);
-
+  const { form, handleChange, invoiceData, handleAddItem } =
+    useContext(FormContext);
   const navigate = useNavigate(); // Initialize the navigate function
+  const onCheck = () => {
+    if (invoiceData[0].items.length === 0) {
+      alert("Please adding an item.");
+      return;
+    }
+    navigate("/payment");
+  };
 
   return (
     <div className="invoice">
@@ -115,9 +115,12 @@ const ItemForm = () => {
             >
               Add Item
             </button>
-            <Link to="/payment" className="btn btn-primary">
+            {/* <Link to="/payment" className="btn btn-primary">
               Payment
-            </Link>
+            </Link> */}
+            <button type="button" className="btn btn-primary" onClick={onCheck}>
+              Payment
+            </button>
 
             {/* <button
               type="button"

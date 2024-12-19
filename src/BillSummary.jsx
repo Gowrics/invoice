@@ -39,7 +39,7 @@ const BillSummary = () => {
   const handlePrint = () => {
     setTimeout(() => {
       window.print();
-      navigate("/home");
+      navigate("/");
       window.scrollTo(0, 0); // Scroll to top after printing
       window.location.reload("/");
       // Reload the page after printing
@@ -50,20 +50,41 @@ const BillSummary = () => {
     <div id="invoice-section" className="invoice">
       <div className="headersec">
         <center>
-          {" "}
           <h1>Logo Consulting Pvt Ltd</h1>
         </center>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <p>Invoice Number: {invoiceData[0]?.invoiceId || "0.00"}</p>
-          <p>Invoice Date: {invoiceData[0]?.invoiceDate || "0.00"}</p>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span>
+            <b>Invoice Number:</b> {invoiceData[0]?.invoiceId || "0.00"}
+            <br />
+            <b> Invoice Date:</b> {invoiceData[0]?.invoiceDate || "0.00"}
+            <br />
+            <b> Invoice Date:</b> {invoiceData[0]?.email || "0.00"}
+          </span>
+          <p>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <b> Invoice To:</b>
+              <div>
+                {invoiceData[0]?.customerName}
+                <br />
+                {invoiceData[0]?.customerCity}
+                <br />
+                {invoiceData[0]?.customerPhNum}
+              </div>
+            </div>
+          </p>
         </div>
         <hr />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
-            <h6>Total Amount: {invoiceData[0]?.totalAmount || "0.00"}</h6>
-            <h6>Total Discount: {invoiceData[0]?.totalDiscount || "0.00"}</h6>
             <h6>
-              Total Net Amount: {invoiceData[0]?.totalNetAmount || "0.00"}
+              Total Amount: {Math.round(invoiceData[0]?.totalAmount || 0)}
+            </h6>
+            <h6>
+              Total Discount: {Math.round(invoiceData[0]?.totalDiscount || 0)}
+            </h6>
+            <h6>
+              Total Net Amount:{" "}
+              {Math.round(invoiceData[0]?.totalNetAmount || 0)}
             </h6>
           </div>
           <div>

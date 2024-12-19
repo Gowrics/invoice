@@ -17,7 +17,7 @@ export const FormProvider = ({ children }) => {
       .get("http://localhost:8004/invoiceData")
       .then((res) => {
         setInvoice(res.data); // Update the invoice state
-        console.log("Fetched invoice data:", res.data); // Log the fetched data, not the current state
+        console.log("Fetched invoice data:", invoice); // Log the fetched data, not the current state
       })
       .catch((err) => console.error("Error fetching invoice data:", err));
   }, []); // Add an empty dependency array to ensure it runs only once
@@ -33,9 +33,10 @@ export const FormProvider = ({ children }) => {
     {
       invoiceId: generateInvoiceNo(),
       invoiceDate: new Date().toLocaleDateString(),
-      cashAmount: "",
-      cardAmount: "",
-      creditAmount: "",
+      email: "inquery@logo.io",
+      cashAmount: "0",
+      cardAmount: "0",
+      creditAmount: "0",
       totalCashAmount: "",
       totalCardAmount: "",
       totalCreditAmount: "",
@@ -43,6 +44,9 @@ export const FormProvider = ({ children }) => {
       totalDiscount: "", // This should hold the sum of all items' discounts
       totalNetAmount: "", // This should hold the sum of all items' net amounts after discount
       items: [],
+      customerName: "",
+      customerCity: "",
+      customerPhNum: "",
     },
   ]);
   // Handle form input changes
@@ -53,7 +57,10 @@ export const FormProvider = ({ children }) => {
     if (
       name === "cashAmount" ||
       name === "cardAmount" ||
-      name === "creditAmount"
+      name === "creditAmount" ||
+      name === "customerName" ||
+      name === "customerCity" ||
+      name === "customerPhNum"
     ) {
       const updatedInvoiceData = [...invoiceData];
       updatedInvoiceData[0] = {

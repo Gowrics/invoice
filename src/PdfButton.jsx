@@ -1,6 +1,7 @@
 import React from "react";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import ReactPDF from "@react-pdf/renderer";
+
 ReactPDF.renderToStream(<MyDocument />);
 ReactPDF.render(<MyDocument />, `${__dirname}/example.pdf`);
 

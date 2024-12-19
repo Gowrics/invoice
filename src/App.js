@@ -13,7 +13,7 @@ const App = () => {
        
         <Routes>
           {/* Define your routes here */}
-          <Route path="/home" element={<ItemForm />} />
+          <Route path="/" element={<ItemForm />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/billsummary" element={<BillSummary />} />
           <Route path="/itemsearch" element={<InvoiceDisplay />} />

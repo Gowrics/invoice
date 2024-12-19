@@ -56,7 +56,7 @@ const EditItems = () => {
     updatedInvoiceData[0].totalNetAmount = totalNetAmount.toFixed(2);
 
     setInvoiceData(updatedInvoiceData); // Update the invoice data context
-    navigate("/home"); // Redirect to the item list after update
+    navigate("/"); // Redirect to the item list after update
     console.log("Updated item:", updatedInvoiceData[0].items[index]);
   };
 

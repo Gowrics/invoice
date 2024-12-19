@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Payment = () => {
-  const { invoiceData, setInvoiceData, form, handleChange } =
+  const { invoiceData, setInvoiceData, form, invoice, handleChange } =
     useContext(FormContext);
 
   const navigate = useNavigate(); // Initialize the navigate function
@@ -21,6 +21,11 @@ const Payment = () => {
     const currentTotalAmount = parseInt(lastInvoice.totalAmount) || 0;
     const currentDisAmount = parseFloat(lastInvoice.totalDiscount) || 0;
     const currentNetAmount = parseFloat(lastInvoice.totalNetAmount) || 0;
+
+    // Ensure customer details
+    const newCustmerName = lastInvoice.customerName || "";
+    const newCustmerCity = lastInvoice.customerCity || "";
+    const newCustmerPhnum = lastInvoice.customerPhNum || "";
 
     // Use `form` values to update amounts
     const formItemNetAmount = parseFloat(form.itemNetAmount) || 0;
@@ -40,6 +45,16 @@ const Payment = () => {
     console.log("Total Payment:", totalPayment);
     console.log("New Total Amount:", newTotalAmount);
 
+    // get tha last invoice amount from json
+    const fromInvoice = invoice[invoice.length - 1];
+    const totalCashAmount = parseFloat(fromInvoice.totalCashAmount) || 0;
+    const totalCardAmount = parseFloat(fromInvoice.totalCardAmount) || 0;
+    const totalCreditAmount = parseFloat(fromInvoice.totalCreditAmount) || 0;
+
+    const newTotalCashAmount = totalCashAmount + cashAmount;
+    const newTotalCardAmount = totalCardAmount + cardAmount;
+    const newTotalCreditAmount = totalCreditAmount + creditAmount;
+
     // Use a tolerance to compare floating-point numbers
     const tolerance = 0.01; // Define a small acceptable error margin
     if (totalPayment > newTotalAmount) {
@@ -55,6 +70,12 @@ const Payment = () => {
         cashAmount: cashAmount.toFixed(2),
         cardAmount: cardAmount.toFixed(2),
         creditAmount: creditAmount.toFixed(2),
+        customerName: newCustmerName,
+        customerCity: newCustmerCity,
+        customerPhNum: newCustmerPhnum,
+        totalCashAmount: newTotalCashAmount,
+        totalCardAmount: newTotalCardAmount,
+        totalCreditAmount: newTotalCreditAmount,
       };
 
       console.log("Updated Invoice:", updatedInvoice);
@@ -106,10 +127,15 @@ const Payment = () => {
             }}
           >
             <div>
-              <h6>Total amount: {invoiceData[0]?.totalAmount || "0.00"}</h6>
-              <h6>Total Discount: {invoiceData[0]?.totalDiscount || "0.00"}</h6>
               <h6>
-                Total Net amount: {invoiceData[0]?.totalNetAmount || "0.00"}
+                Total Amount: {Math.round(invoiceData[0]?.totalAmount || 0)}
+              </h6>
+              <h6>
+                Total Discount: {Math.round(invoiceData[0]?.totalDiscount || 0)}
+              </h6>
+              <h6>
+                Total Net Amount:{" "}
+                {Math.round(invoiceData[0]?.totalNetAmount || 0)}
               </h6>
             </div>
             <div>
@@ -160,7 +186,42 @@ const Payment = () => {
                 />
               </div>
             </div>
-
+            {/* ---------------------------- */}
+            <div className="row">
+              <div className="col">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Customer Name"
+                  name="customerName"
+                  value={invoiceData[0]?.customerName || ""}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="col">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Customer City"
+                  name="customerCity"
+                  value={invoiceData[0].customerCity}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="col">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Customer Ph Number"
+                  name="customerPhNum"
+                  value={invoiceData[0].customerPhNum}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
             <div className="btn-group">
               <button
                 type="button"
