@@ -1,67 +1,6 @@
 {
   "invoiceData": [
     {
-      "id": "3a3d",
-      "invoiceId": "1912-3381",
-      "invoiceDate": "12/19/2024",
-      "email": "inquery@logo.io",
-      "cashAmount": "7245.00",
-      "cardAmount": "0.00",
-      "creditAmount": "0.00",
-      "totalCashAmount": 7245,
-      "totalCardAmount": 0,
-      "totalCreditAmount": 0,
-      "totalAmount": "7245.00",
-      "totalDiscount": "805.00",
-      "totalNetAmount": "7245.00",
-      "items": [
-        {
-          "itemDescription": "Moniter",
-          "itemRate": "4000",
-          "itemQuantity": "2",
-          "itemDiscount": "800.00",
-          "itemNetAmount": "7200.00"
-        },
-        {
-          "itemDescription": "Mouse",
-          "itemRate": "50",
-          "itemQuantity": "1",
-          "itemDiscount": "5.00",
-          "itemNetAmount": "45.00"
-        }
-      ],
-      "customerName": "Mani",
-      "customerCity": "Chennai",
-      "customerPhNum": "986554333"
-    },
-    {
-      "id": "06d3",
-      "invoiceId": "1912-7995",
-      "invoiceDate": "12/19/2024",
-      "email": "inquery@logo.io",
-      "cashAmount": "45.00",
-      "cardAmount": "0.00",
-      "creditAmount": "0.00",
-      "totalCashAmount": 7290,
-      "totalCardAmount": 0,
-      "totalCreditAmount": 0,
-      "totalAmount": "45.00",
-      "totalDiscount": "5.00",
-      "totalNetAmount": "45.00",
-      "items": [
-        {
-          "itemDescription": "Moniter",
-          "itemRate": "25",
-          "itemQuantity": "2",
-          "itemDiscount": "5.00",
-          "itemNetAmount": "45.00"
-        }
-      ],
-      "customerName": "Kani",
-      "customerCity": "Trichy",
-      "customerPhNum": "9876446555"
-    },
-    {
       "id": "ac7b",
       "invoiceId": "1912-8095",
       "invoiceDate": "12/19/2024",
@@ -99,7 +38,7 @@
       "totalCashAmount": 7490,
       "totalCardAmount": 20,
       "totalCreditAmount": 14,
-      "totalAmount": "162.00",
+      "totalAmount": "4455",
       "totalDiscount": "18.00",
       "totalNetAmount": "162.00",
       "items": [
@@ -111,70 +50,9 @@
           "itemNetAmount": "162.00"
         }
       ],
-      "customerName": "rani",
-      "customerCity": "Trichy",
+      "customerName": "wewe",
+      "customerCity": "rttr",
       "customerPhNum": "98654545453"
-    },
-    {
-      "id": "b8ac",
-      "invoiceId": "1912-2874",
-      "invoiceDate": "12/19/2024",
-      "email": "inquery@logo.io",
-      "cashAmount": "3150.00",
-      "cardAmount": "0.00",
-      "creditAmount": "0.00",
-      "totalCashAmount": 10640,
-      "totalCardAmount": 20,
-      "totalCreditAmount": 14,
-      "totalAmount": "3150.00",
-      "totalDiscount": "350.00",
-      "totalNetAmount": "3150.00",
-      "items": [
-        {
-          "itemDescription": "Moniter",
-          "itemRate": "1000",
-          "itemQuantity": "2",
-          "itemDiscount": "200.00",
-          "itemNetAmount": "1800.00"
-        },
-        {
-          "itemDescription": "Printer",
-          "itemRate": "500",
-          "itemQuantity": "3",
-          "itemDiscount": "150.00",
-          "itemNetAmount": "1350.00"
-        }
-      ],
-      "customerName": "Mani",
-      "customerCity": "Chennai",
-      "customerPhNum": "9764333333"
-    },
-    {
-      "id": "5c9b",
-      "invoiceId": "1912-6354",
-      "invoiceDate": "12/19/2024",
-      "email": "inquery@logo.io",
-      "cashAmount": "500.00",
-      "cardAmount": "310.00",
-      "creditAmount": "0.00",
-      "totalCashAmount": 11140,
-      "totalCardAmount": 330,
-      "totalCreditAmount": 14,
-      "totalAmount": "810.00",
-      "totalDiscount": "90.00",
-      "totalNetAmount": "810.00",
-      "items": [
-        {
-          "itemDescription": "Mouse",
-          "itemRate": "300",
-          "itemQuantity": "3",
-          "itemDiscount": "90.00",
-          "itemNetAmount": "810.00"
-        }
-      ],
-      "customerName": "Raj",
-      "customerCity": "Chennai",
-      "customerPhNum": "956454445"
     },
     {
       "id": "fddc",
@@ -202,6 +80,33 @@
       "customerName": "Taj",
       "customerCity": "Trichy",
       "customerPhNum": "9756454533"
+    },
+    {
+      "id": "e745",
+      "invoiceId": "2012-7185",
+      "invoiceDate": "12/20/2024",
+      "email": "inquery@logo.io",
+      "cashAmount": "419.00",
+      "cardAmount": "0.00",
+      "creditAmount": "0.00",
+      "totalCashAmount": 11559,
+      "totalCardAmount": 9330,
+      "totalCreditAmount": 14,
+      "totalAmount": "419.00",
+      "totalDiscount": "46.60",
+      "totalNetAmount": "419.40",
+      "items": [
+        {
+          "itemDescription": "Moniter",
+          "itemRate": "233",
+          "itemQuantity": "2",
+          "itemDiscount": "46.60",
+          "itemNetAmount": "419.40"
+        }
+      ],
+      "customerName": "Mani",
+      "customerCity": "Chennai",
+      "customerPhNum": "9876446786"
     }
   ]
 }

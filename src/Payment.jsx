@@ -79,6 +79,7 @@ const Payment = () => {
       };
 
       console.log("Updated Invoice:", updatedInvoice);
+      console.log("totalCashAmount ", updatedInvoice.totalCashAmount);
 
       // Send updated data to backend
       axios

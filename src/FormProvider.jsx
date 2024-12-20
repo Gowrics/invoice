@@ -3,6 +3,8 @@ import { FormContext } from "./FormContext";
 import axios from "axios";
 
 export const FormProvider = ({ children }) => {
+  const [updateId, setUpdateId] = useState(""); // Invoice ID to search for update
+
   const [invoice, setInvoice] = useState([]);
   const [invoiceId, setInvoiceId] = useState(0);
   const [form, setForm] = useState({
@@ -142,23 +144,24 @@ export const FormProvider = ({ children }) => {
       itemNetAmount: "",
     });
   };
-  // const handleSubmit = () => {
-  //   // const newItem = { ...form };
-
-  //   // // Add the new item to the items array
-  //   // const updatedInvoiceData = [...invoiceData];
-  //   // updatedInvoiceData[0].items.push(newItem);
-
-  //   // setInvoiceData(updatedInvoiceData);
-
-  //   // Send updated data to backend
-  //   axios
-  //     .post("http://localhost:8004/invoiceData", invoiceData)
-  //     .then(() => {
-  //       console.log("Invoice updated successfully", invoiceData);
-  //     })
-  //     .catch((error) => console.error("Error updating invoice:", error));
-  // };
+  const handleDeleteInvoice = () => {
+    if (!updateId) {
+      alert("Please enter an Invoice ID.");
+      return;
+    }
+    // Find the invoice by invoiceId
+    const invoiceData = invoice.find(
+      (invoice) => invoice.invoiceId === updateId
+    );
+    setUpdateId(invoiceData.id);
+    axios
+      .delete(`http://localhost:8004/invoiceData/${updateId}`)
+      .then((res) => {
+        setInvoice(res.data); // Update the invoice state
+        console.log("Fetched invoice data:", invoice); // Log the fetched data, not the current state
+      })
+      .catch((err) => console.error("Error fetching invoice data:", err));
+  };
 
   return (
     <FormContext.Provider
@@ -167,9 +170,12 @@ export const FormProvider = ({ children }) => {
         invoice,
         setForm,
         handleChange,
+        updateId,
+        setUpdateId,
         handleAddItem,
         invoiceData,
         setInvoiceData,
+        handleDeleteInvoice,
       }}
     >
       {children}

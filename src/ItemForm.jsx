@@ -7,8 +7,14 @@ import { Link, useNavigate } from "react-router-dom";
 // import InvoiceDisplay from "./ItemSearch";
 
 const ItemForm = () => {
-  const { form, handleChange, invoiceData, handleAddItem } =
-    useContext(FormContext);
+  const {
+    form,
+    handleChange,
+    handleDeleteInvoice,
+    invoiceData,
+    handleAddItem,
+  } = useContext(FormContext);
+
   const navigate = useNavigate(); // Initialize the navigate function
   const onCheck = () => {
     if (invoiceData[0].items.length === 0) {
@@ -136,8 +142,11 @@ const ItemForm = () => {
       {/* Table Section */}
       <div className="table-responsive">
         <ItemList />
-        <Link to="/itemsearch" className="btn btn-primary">
+        <Link to="/invoiceupdate" className="btn btn-primary me-2">
           Invoice Search
+        </Link>
+        <Link to="/invoicedelete" className="btn btn-primary me-2">
+          Invoice Delete
         </Link>
       </div>
     </div>
