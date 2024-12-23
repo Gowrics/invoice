@@ -109,11 +109,11 @@ const BillSummary = () => {
             {invoiceData[0].items && invoiceData[0].items.length > 0 ? (
               invoiceData[0].items.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.itemdescription}</td>
+                  <td>{item.itemDescription}</td>
                   <td>{item.itemRate}</td>
                   <td>{item.itemQuantity}</td>
                   <td>{item.itemDiscount}</td>
-                  <td>{item.netAmount}</td>
+                  <td>{item.itemNetAmount}</td>
                 </tr>
               ))
             ) : (

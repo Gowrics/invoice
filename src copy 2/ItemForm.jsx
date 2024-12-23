@@ -148,9 +148,6 @@ const ItemForm = () => {
         <Link to="/invoicedelete" className="btn btn-primary me-2">
           Invoice Delete
         </Link>
-        <Link to="/itemsearch" className="btn btn-primary me-2">
-          Invoice Details
-        </Link>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/payment" element={<Payment />} />
           <Route path="/billsummary" element={<BillSummary />} />
           <Route path="/editItems/:index" element={<EditItems />} />
-          <Route path="/itemsearch" element={<InvoiceDisplay />} />
+          {/* <Route path="/itemsearch" element={<InvoiceDisplay />} /> */}
           <Route path="/invoiceupdate" element={<InvoiceUpdate />} />
           <Route path="/invoicedelete" element={<InvoiceDelete />} />
         </Routes>

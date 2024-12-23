@@ -1,0 +1,23 @@
+{
+  "invoices": [
+    {
+      "id": "c134",
+      "invoiceHeader": {
+        "date": "2024-12-23",
+        "cashAmount": 360,
+        "cardAmount": 0,
+        "creditAmount": 0
+      },
+      "invoiceDetails": [
+        {
+          "date": "2024-12-23",
+          "itemdescription": "moniter",
+          "itemRate": 200,
+          "itemQty": 2,
+          "itemDiscount": 40,
+          "netAmount": 360
+        }
+      ]
+    }
+  ]
+}

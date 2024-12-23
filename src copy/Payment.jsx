@@ -9,39 +9,13 @@ const Payment = () => {
   const { invoiceData, setInvoiceData, form, invoice, handleChange } =
     useContext(FormContext);
 
-  //--------------------
-  const [invoiceFormat, setInvoiceFormat] = useState({
-    invoiceHeader: {
-      date: new Date().toLocaleDateString("en-CA"), // auto generate today's date
-
-      cashAmount: 12,
-      cardAmount: 0,
-      creditAmount: 0,
-    },
-    invoiceDetails: [
-      {
-        date: new Date().toLocaleDateString("en-CA"),
-        id: "",
-        itemdescription: "",
-        itemRate: 0,
-        itemQty: 0,
-        itemDiscount: 0.0,
-        netAmount: 0.0,
-      },
-    ],
-  });
-  invoiceFormat.invoiceHeader.cashAmount = 30;
-
-  console.log("gowri....", invoiceFormat.invoiceHeader.cashAmount);
-
-  //-------------------------
-
   const [totalCashAmount, setTotalCashAmount] = useState(0);
   const [totalCardAmount, setTotalCardAmount] = useState(0);
   const [totalCreditAmount, setTotalCreditAmount] = useState(0);
   const navigate = useNavigate(); // Initialize the navigate function
 
   // Handle form submission
+
   const handleSubmit = () => {
     const lastInvoice =
       invoiceData.length > 0 ? invoiceData[invoiceData.length - 1] : {};
@@ -73,8 +47,7 @@ const Payment = () => {
 
     console.log("Total Payment:", totalPayment);
     console.log("New Total Amount:", newTotalAmount);
-
-    // Handle the empty invoice case
+    // Ensure the invoice array has at least one item
     if (invoice.length > 0) {
       const fromInvoice = invoice[invoice.length - 1];
       setTotalCashAmount(parseFloat(fromInvoice.totalCashAmount) || 0);
@@ -82,6 +55,7 @@ const Payment = () => {
       setTotalCreditAmount(parseFloat(fromInvoice.totalCreditAmount) || 0);
     } else {
       console.log("No invoices available.");
+      // You can set default values or handle the empty invoice case here if needed
       setTotalCashAmount(0);
       setTotalCardAmount(0);
       setTotalCreditAmount(0);
@@ -91,12 +65,16 @@ const Payment = () => {
     const newTotalCardAmount = totalCardAmount + cardAmount;
     const newTotalCreditAmount = totalCreditAmount + creditAmount;
 
-    // Ensure the total payment matches the new total amount with a small tolerance
-    const tolerance = 0.01;
+    // Use a tolerance to compare floating-point numbers
+    const tolerance = 0.01; // Define a small acceptable error margin
+    if (totalPayment > newTotalAmount) {
+      alert(`Balance: ${totalPayment - newTotalAmount}`);
+    }
+
     if (Math.abs(totalPayment - newTotalAmount) < tolerance) {
       const updatedInvoice = {
         ...lastInvoice,
-        totalAmount: newTotalAmount.toFixed(2),
+        totalAmount: newTotalAmount.toFixed(2), // Format to 2 decimal places
         totalDiscount: newDisAmount.toFixed(2),
         totalNetAmount: newNetAmount.toFixed(2),
         cashAmount: cashAmount.toFixed(2),
@@ -113,39 +91,11 @@ const Payment = () => {
       console.log("Updated Invoice:", updatedInvoice);
       console.log("totalCashAmount ", updatedInvoice.totalCashAmount);
 
-      // Update invoiceFormat with the new values
-      invoiceFormat.invoiceHeader.cashAmount = Number(
-        updatedInvoice.cashAmount
-      );
-      invoiceFormat.invoiceHeader.cardAmount = Number(
-        updatedInvoice.cardAmount
-      );
-      invoiceFormat.invoiceHeader.creditAmount = Number(
-        updatedInvoice.creditAmount
-      );
-
-      // Map items into invoiceDetails (note: this assumes items are in updatedInvoice.items)
-      if (Array.isArray(updatedInvoice.items)) {
-        invoiceFormat.invoiceDetails = updatedInvoice.items.map((item) => ({
-          date: new Date().toLocaleDateString("en-CA"),
-          itemdescription: item.itemdescription || "",
-          itemRate: Number(item.itemRate) || 0,
-          itemQty: Number(item.itemQty) || 0,
-          itemDiscount: Number(item.itemDiscount) || 0,
-          netAmount: Number(item.netAmount) || 0,
-        }));
-      } else {
-        console.error("updatedInvoice.items is not an array.");
-      }
-
-      console.log("Updated invoiceDetails:", invoiceFormat.invoiceDetails);
-
       // Send updated data to backend
       axios
-        // .post("http://localhost:5000/invoices", invoiceFormat)
-        .post("http://192.168.91.201:8082/invoice/create", invoiceFormat)
+        .post("http://localhost:8004/invoiceData", updatedInvoice)
         .then(() => {
-          alert("Invoice updated successfully", updatedInvoice);
+          console.log("Invoice updated successfully", updatedInvoice);
           navigate("/billsummary");
         })
         .catch((error) => console.error("Error updating invoice:", error));
@@ -175,7 +125,7 @@ const Payment = () => {
               }}
             >
               <p>Invoice Number: {invoiceData[0]?.invoiceId || "0.00"}</p>{" "}
-              <p>Invoice Date: {invoiceData[0]?.date || "0.00"}</p>
+              <p>Invoice Date: {invoiceData[0]?.ate || "0.00"}</p>
             </div>
           </div>
           <hr />

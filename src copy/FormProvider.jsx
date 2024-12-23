@@ -4,11 +4,15 @@ import axios from "axios";
 
 export const FormProvider = ({ children }) => {
   const [updateId, setUpdateId] = useState(""); // Invoice ID to search for update
-  const [updatableInvoice, setUpdatableInvoice] = useState([]);
 
   const [invoice, setInvoice] = useState([]);
   const [invoiceId, setInvoiceId] = useState(0);
   const [form, setForm] = useState({
+    // itemDescription: "",
+    // itemRate: "",
+    // itemQuantity: "",
+    // itemDiscount: "",
+    // itemNetAmount: "",
     date: new Date().toLocaleDateString(),
     itemdescription: "",
     itemRate: "",
@@ -16,41 +20,15 @@ export const FormProvider = ({ children }) => {
     itemDiscount: "",
     netAmount: "",
   });
-  // //--------------------
-  // const [invoiceFormat, setInvoiceFormat] = useState({
-  //   invoiceHeader: {
-  //     date: new Date().toLocaleDateString(), // auto generate today's date
-  //     cashAmount: 0,
-  //     cardAmount: 0,
-  //     creditAmount: 0,
-  //   },
-  //   invoiceDetails: [
-  //     {
-  //       date: new Date().toLocaleDateString(),
-  //       itemdescription: "",
-  //       itemRate: 0,
-  //       itemQty: 0,
-  //       itemDiscount: 0.0,
-  //       netAmount: 0.0,
-  //     },
-  //   ],
-  // });
-  // //-------------------------
   useEffect(() => {
     axios
-
-      // .get("http://localhost:5000/invoices")
-      .get("http://192.168.91.201:8082/invoice/getAll")
+      .get("http://localhost:8004/invoiceData")
       .then((res) => {
         setInvoice(res.data); // Update the invoice state
-        console.log("Fetched invoicefg data:", invoice); // Log the fetched data, not the current state
+        console.log("Fetched invoice data:", invoice); // Log the fetched data, not the current state
       })
       .catch((err) => console.error("Error fetching invoice data:", err));
   }, []); // Add an empty dependency array to ensure it runs only once
-
-  //----------------------------
-
-  //-----------------------------
 
   const generateInvoiceNo = () => {
     const date = new Date();
@@ -203,8 +181,6 @@ export const FormProvider = ({ children }) => {
         invoiceData,
         setInvoiceData,
         handleDeleteInvoice,
-        updatableInvoice,
-        setUpdatableInvoice,
       }}
     >
       {children}

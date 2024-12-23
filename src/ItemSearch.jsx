@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import { FormContext } from "./FormContext";
 
+import "./style.css";
+import { Link } from "react-router-dom";
+
 const InvoiceDisplay = () => {
-  const { invoice } = useContext(FormContext);
+  const { invoice, setUpdateId } = useContext(FormContext);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
 
@@ -27,76 +30,110 @@ const InvoiceDisplay = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div>
-        <label>Search By Date</label>
-        <input
-          type="date"
-          placeholder="From"
-          name="fromDate"
-          value={fromDate}
-          onChange={(e) => setFromDate(e.target.value)} // Update the fromDate state
-        />
-
-        <input
-          type="date"
-          placeholder="To"
-          name="toDate"
-          value={toDate}
-          onChange={(e) => setToDate(e.target.value)} // Update the toDate state
-        />
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        {filteredInvoices.map((inv) => (
-          <div key={inv.invoiceId} style={{ marginBottom: "20px" }}>
-            <h2>Invoice ID: {inv.invoiceId}</h2>
-            <p>Invoice Date: {inv.invoiceDate}</p>
-            <p>Total Amount: {inv.totalAmount}</p>
-            <p>Total Discount: {inv.totalDiscount}</p>
-            <p>Total Net Amount: {inv.totalNetAmount}</p>
-
-            <h3>Items:</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Description</th>
-                  <th>Rate</th>
-                  <th>Quantity</th>
-                  <th>Discount</th>
-                  <th>Net Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {inv.items && inv.items.length > 0 ? (
-                  inv.items.map((item, itemIndex) => (
-                    <tr key={itemIndex}>
-                      <td>{item.itemDescription}</td>
-                      <td>{item.itemRate}</td>
-                      <td>{item.itemQuantity}</td>
-                      <td>{item.itemDiscount}</td>
-                      <td>{item.itemNetAmount}</td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="5">No items available</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-            <hr />
+    <>
+      <div className="invoice" style={{ border: "0" }}>
+        {/* Header Section */}
+        <div className="headersec">
+          <div className="head">
+            <h1>Logo Consulting Pvt Ltd</h1>
           </div>
-        ))}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "29px",
+            }}
+          >
+            <div>
+              <label>Search By Date</label>
+              <input
+                type="date"
+                placeholder="From"
+                name="fromDate"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)} // Update the fromDate state
+              />
+            </div>
+
+            <input
+              type="date"
+              placeholder="To"
+              name="toDate"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)} // Update the toDate state
+            />
+          </div>
+
+          <div>
+            {filteredInvoices.map((inv) => (
+              <div key={inv.id}>
+                <div className="details">
+                  <div>
+                    <p>Invoice ID: {inv.invoiceHeader.invoiceNo}</p>
+                    <p>Invoice Date: {inv.invoiceHeader.date}</p>
+                  </div>
+
+                  <div>
+                    <p>Cash Amount: {inv.invoiceHeader.cashAmount || 0}</p>
+                    <p>Card Discount: {inv.invoiceHeader.cardDiscount || 0}</p>
+                    <p>Credit Amount: {inv.invoiceHeader.creditAmount || 0}</p>
+                  </div>
+                </div>
+
+                <h3>Items:</h3>
+                <div className="table-responsive">
+                  <table className="table mt-5 border table-striped">
+                    <thead>
+                      <tr>
+                        <th>Description</th>
+                        <th>Rate</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th>Net Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {inv.invoiceDetails && inv.invoiceDetails.length > 0 ? (
+                        inv.invoiceDetails.map((item, itemIndex) => (
+                          <tr key={itemIndex}>
+                            <td>{item.itemdescription}</td>
+                            <td>{item.itemRate}</td>
+                            <td>{item.itemQty}</td>
+                            <td>{item.itemDiscount}</td>
+                            <td>{item.netAmount}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="5">No items available</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+                <Link
+                  to="/invoiceupdate"
+                  className="btn btn-primary me-4"
+                  onClick={() => setUpdateId(inv.invoiceHeader.invoiceNo)}
+                >
+                  Update
+                </Link>
+                <Link
+                  to="/invoicedelete"
+                  className="btn btn-primary"
+                  onClick={() => setUpdateId(inv.invoiceHeader.invoiceNo)}
+                >
+                  Delete
+                </Link>
+                <hr style={{ color: "red" }} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
