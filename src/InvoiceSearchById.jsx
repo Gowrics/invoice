@@ -298,7 +298,7 @@ const InvoiceUpdate = () => {
               <>
                 <button
                   onClick={handleUpdateInvoice}
-                  className="btn btn-primary btn-sm mb-3 vh-20 "
+                  className="btn btn-primary btn-sm mb-3  "
                 >
                   Update Invoice
                 </button>

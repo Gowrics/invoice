@@ -10,7 +10,7 @@
       },
       "invoiceDetails": [
         {
-          "date": "2024-12-23",
+          "date": "2023-12-23",
           "itemdescription": "moniter",
           "itemRate": 200,
           "itemQty": 2,
@@ -84,7 +84,7 @@
       },
       "invoiceDetails": [
         {
-          "date": "2024-4-20",
+          "date": "2024-04-20",
           "itemdescription": "moniter",
           "itemRate": 200,
           "itemQty": 2,
@@ -96,14 +96,14 @@
     {
       "id": "e44y",
       "invoiceHeader": {
-        "date": "2024-4-21",
+        "date": "2024-04-21",
         "cashAmount": 360,
         "cardAmount": 0,
         "creditAmount": 0
       },
       "invoiceDetails": [
         {
-          "date": "2024-4-21",
+          "date": "2024-04-21",
           "itemdescription": "moniter",
           "itemRate": 200,
           "itemQty": 2,
@@ -115,14 +115,32 @@
     {
       "id": "u54y",
       "invoiceHeader": {
-        "date": "2024-4-2",
+        "date": "2024-04-02",
         "cashAmount": 360,
         "cardAmount": 0,
         "creditAmount": 0
       },
       "invoiceDetails": [
         {
-          "date": "2024-4-2",
+          "date": "2024-04-02",
+          "itemdescription": "moniter",
+          "itemRate": 200,
+          "itemQty": 2,
+          "itemDiscount": 40,
+          "netAmount": 360
+        } 
+      ]
+    }, {
+      "id": "u54y",
+      "invoiceHeader": {
+        "date": "2024-12-24",
+        "cashAmount": 360,
+        "cardAmount": 0,
+        "creditAmount": 0
+      },
+      "invoiceDetails": [
+        {
+          "date": "2024-04-02",
           "itemdescription": "moniter",
           "itemRate": 200,
           "itemQty": 2,

@@ -13,23 +13,22 @@ const InvoiceDisplay = () => {
   const filteredInvoices =
     fromDate && toDate
       ? invoice.filter((inv) => {
-          const invoiceDate = new Date(
-            inv.invoiceHeader.date
-          ).toLocaleDateString("en-CA");
-          console.log("Invoice Date:", invoiceDate); // Log invoice date
-          console.log("From Date:", fromDate, "To Date:", toDate); // Log fromDate and toDate
+          const invoiceDate = new Date(inv.invoiceHeader.date); // Parse invoice date
+          const from = new Date(fromDate);
+          const to = new Date(toDate);
 
-          // Compare invoiceDate to the fromDate and toDate range (inclusive)
-          return (
-            invoiceDate >= new Date(fromDate) && invoiceDate <= new Date(toDate)
-          );
+          // Validate the date range
+          if (from > to) {
+            console.error("Invalid date range: fromDate is after toDate");
+            return false; // Skip filtering for invalid range
+          }
+
+          // Compare the year, month, and day inclusively
+          return invoiceDate >= from && invoiceDate <= to;
         })
       : invoice;
 
   // If no invoices match the date range, show the message
-  if (filteredInvoices.length === 0) {
-    return <p>No invoice data available for the selected date range.</p>;
-  }
 
   return (
     <>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FormContext } from "./FormContext";
 import axios from "axios";
+import { Button, Modal } from "react-bootstrap";
 
 export const FormProvider = ({ children }) => {
   const [updateId, setUpdateId] = useState(""); // Invoice ID to search for update
@@ -8,6 +9,11 @@ export const FormProvider = ({ children }) => {
 
   const [invoice, setInvoice] = useState([]);
   const [invoiceId, setInvoiceId] = useState(0);
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  const handleCloseModal = () => setShowModal(false);
   const [form, setForm] = useState({
     date: new Date().toLocaleDateString(),
     itemdescription: "",
@@ -20,8 +26,8 @@ export const FormProvider = ({ children }) => {
   useEffect(() => {
     axios
 
-      // .get("http://localhost:5000/invoices")
-      .get("http://192.168.91.201:8082/invoice/getAll")
+      .get("http://localhost:5000/invoices")
+      // .get("http://192.168.91.201:8082/invoice/getAll")
       .then((res) => {
         setInvoice(res.data); // Update the invoice state
         // Log the fetched data, not the current state
@@ -113,7 +119,10 @@ export const FormProvider = ({ children }) => {
       isNaN(parseFloat(form.netAmount)) ||
       isNaN(parseFloat(form.itemDiscount))
     ) {
-      alert("Please fill in all required fields before adding an item.");
+      setModalMessage(
+        "Please fill in all required fields before adding an item."
+      );
+      setShowModal(true); // Show the modal instead of alert
       return;
     }
     const newItem = { ...form };
@@ -173,23 +182,37 @@ export const FormProvider = ({ children }) => {
   };
 
   return (
-    <FormContext.Provider
-      value={{
-        form,
-        invoice,
-        setForm,
-        handleChange,
-        updateId,
-        setUpdateId,
-        handleAddItem,
-        invoiceData,
-        setInvoiceData,
-        handleDeleteInvoice,
-        updatableInvoice,
-        setUpdatableInvoice,
-      }}
-    >
-      {children}
-    </FormContext.Provider>
+    <>
+      <FormContext.Provider
+        value={{
+          form,
+          invoice,
+          setForm,
+          handleChange,
+          updateId,
+          setUpdateId,
+          handleAddItem,
+          invoiceData,
+          setInvoiceData,
+          handleDeleteInvoice,
+          updatableInvoice,
+          setUpdatableInvoice,
+        }}
+      >
+        {children}
+      </FormContext.Provider>
+      {/* Bootstrap Modal */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Validation Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
