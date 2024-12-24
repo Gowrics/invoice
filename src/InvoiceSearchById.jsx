@@ -35,52 +35,56 @@ const InvoiceUpdate = () => {
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
 
-    // Clone the existing invoice details array
-    const updatedInvoiceDetails = [...invoice.invoiceDetails];
-
-    // Update the specific field in the corresponding invoice detail
-    updatedInvoiceDetails[index][name] =
-      name === "itemDiscount" ||
-      name === "itemQty" ||
-      name === "itemRate" ||
-      name === "netAmount"
-        ? Number(value) // Convert to number for numerical fields
-        : value; // Otherwise, keep as is for text fields
-
-    // Update invoiceHeader directly if the name matches its fields
-    const updatedInvoiceHeader = { ...invoice.invoiceHeader };
+    // Check if the field belongs to invoiceDetails or invoiceHeader
     if (
       name === "cashAmount" ||
       name === "cardAmount" ||
       name === "creditAmount" ||
       name === "date"
     ) {
-      updatedInvoiceHeader[name] = name === "date" ? value : Number(value); // Convert to number or keep as is
-    }
-
-    if (
-      !isNaN(updatedInvoiceDetails[index].itemRate) &&
-      !isNaN(updatedInvoiceDetails[index].itemQty)
-    ) {
-      const itemRate = updatedInvoiceDetails[index].itemRate;
-      const itemQty = updatedInvoiceDetails[index].itemQty;
-
-      const itemDiscount = (itemRate * itemQty * 10) / 100; // Assuming 10% discount
-      const itemNetAmount = itemRate * itemQty - itemDiscount;
-
-      updatedInvoiceDetails[index] = {
-        ...updatedInvoiceDetails[index],
-        itemDiscount: parseFloat(itemDiscount.toFixed(2)),
-        netAmount: parseFloat(itemNetAmount.toFixed(2)),
+      // Update invoiceHeader fields directly
+      const updatedInvoiceHeader = {
+        ...invoice.invoiceHeader,
+        [name]: name === "date" ? value : Number(value),
       };
-    }
+      setInvoice((prevInvoice) => ({
+        ...prevInvoice,
+        invoiceHeader: updatedInvoiceHeader,
+      }));
+    } else {
+      // Clone the existing invoice details array
+      const updatedInvoiceDetails = [...invoice.invoiceDetails];
+      updatedInvoiceDetails[index][name] =
+        name === "itemDiscount" ||
+        name === "itemQty" ||
+        name === "itemRate" ||
+        name === "netAmount"
+          ? Number(value) // Convert to number for numerical fields
+          : value; // Otherwise, keep as is for text fields
 
-    // Update the state with the modified data
-    setInvoice((prevInvoice) => ({
-      ...prevInvoice,
-      invoiceDetails: updatedInvoiceDetails,
-      invoiceHeader: updatedInvoiceHeader,
-    }));
+      if (
+        !isNaN(updatedInvoiceDetails[index].itemRate) &&
+        !isNaN(updatedInvoiceDetails[index].itemQty)
+      ) {
+        const itemRate = updatedInvoiceDetails[index].itemRate;
+        const itemQty = updatedInvoiceDetails[index].itemQty;
+
+        const itemDiscount = (itemRate * itemQty * 10) / 100; // Assuming 10% discount
+        const itemNetAmount = itemRate * itemQty - itemDiscount;
+
+        updatedInvoiceDetails[index] = {
+          ...updatedInvoiceDetails[index],
+          itemDiscount: parseFloat(itemDiscount.toFixed(2)),
+          netAmount: parseFloat(itemNetAmount.toFixed(2)),
+        };
+      }
+
+      // Update the state with the modified data
+      setInvoice((prevInvoice) => ({
+        ...prevInvoice,
+        invoiceDetails: updatedInvoiceDetails,
+      }));
+    }
   };
 
   const addItem = () => {
@@ -203,7 +207,7 @@ const InvoiceUpdate = () => {
               <input
                 type="text"
                 name="cashAmount"
-                value={invoice.invoiceHeader.cashAmount || ""}
+                value={invoice.invoiceHeader.cashAmount || 0}
                 disabled={!isEditing}
                 onChange={(e) => handleInputChange(e)}
               />
@@ -213,7 +217,7 @@ const InvoiceUpdate = () => {
               <input
                 type="text"
                 name="cardAmount"
-                value={invoice.invoiceHeader.cardAmount || ""}
+                value={invoice.invoiceHeader.cardAmount || 0}
                 disabled={!isEditing}
                 onChange={(e) => handleInputChange(e)}
               />
@@ -223,7 +227,7 @@ const InvoiceUpdate = () => {
               <input
                 type="text"
                 name="creditAmount"
-                value={invoice.invoiceHeader.creditAmount || ""}
+                value={invoice.invoiceHeader.creditAmount || 0}
                 disabled={!isEditing}
                 onChange={(e) => handleInputChange(e)}
               />
@@ -292,8 +296,15 @@ const InvoiceUpdate = () => {
 
             {isEditing && (
               <>
-                <button onClick={handleUpdateInvoice}>Update Invoice</button>
-                <button onClick={addItem}>Add More Items</button>
+                <button
+                  onClick={handleUpdateInvoice}
+                  className="btn btn-primary btn-sm mb-3 vh-20 "
+                >
+                  Update Invoice
+                </button>
+                <button className="btn btn-primary btn-sm " onClick={addItem}>
+                  Add More Items
+                </button>
               </>
             )}
           </div>

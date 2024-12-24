@@ -1,38 +1,63 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FormContext } from "./FormContext";
-
-import "./style.css";
 import { Link } from "react-router-dom";
 
-const InvoiceDisplay = () => {
+const Pagination = () => {
+  const [data, setData] = useState([]); // To store the invoices array
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3);
   const { invoice, setUpdateId } = useContext(FormContext);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
 
+  useEffect(() => {
+    fetch()
+    //   `http://localhost:5000/invoices?page=${currentPage}&limit=${itemsPerPage}`
+    // fetch(
+    //   `http://192.168.91.201:8082/invoice/get/${currentPage}/${itemsPerPage}`
+      .then((response) => response.json())
+      .then((responseData) => {
+        if (responseData) {
+          setData(responseData); // Extract the invoices array
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setData([]); // Handle fetch error
+      });
+  }, [currentPage, itemsPerPage]);
+
+  console.log("Fetched Data:", data);
+
+  // Pagination logic
+  const totalPages = Math.ceil(data.totalCount / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = data.slice(startIndex, endIndex);
+
+  console.log("Current Items:", currentItems);
   // Filter invoices based on fromDate and toDate
+  // Update the data fallback in filteredInvoices
   const filteredInvoices =
     fromDate && toDate
-      ? invoice.filter((inv) => {
+      ? currentItems.filter((inv) => {
           const invoiceDate = new Date(
             inv.invoiceHeader.date
           ).toLocaleDateString("en-CA");
-          console.log("Invoice Date:", invoiceDate); // Log invoice date
-          console.log("From Date:", fromDate, "To Date:", toDate); // Log fromDate and toDate
-
-          // Compare invoiceDate to the fromDate and toDate range (inclusive)
           return (
             invoiceDate >= new Date(fromDate) && invoiceDate <= new Date(toDate)
           );
         })
-      : invoice;
+      : data; // Use 'data' instead of 'invoice'
 
   // If no invoices match the date range, show the message
-  if (filteredInvoices.length === 0) {
-    return <p>No invoice data available for the selected date range.</p>;
-  }
+  //   if (filteredInvoices.length === 0) {
+  //     return <p>No invoice data available for the selected date range.</p>;
+  //   }
 
   return (
-    <>
+    <div>
       <div className="invoice" style={{ border: "0" }}>
         {/* Header Section */}
         <div className="headersec">
@@ -71,7 +96,6 @@ const InvoiceDisplay = () => {
           <div>
             {filteredInvoices.map((inv) => (
               <div key={inv.id}>
-                <h4>Invoice</h4>
                 <div className="details">
                   <div>
                     <p>Invoice ID: {inv.invoiceHeader.invoiceNo}</p>
@@ -89,9 +113,10 @@ const InvoiceDisplay = () => {
                     <p>Credit Amount: {inv.invoiceHeader.creditAmount || 0}</p>
                   </div>
                 </div>
+
                 <h3>Items:</h3>
                 <div className="table-responsive">
-                  <table className="table mt-0 border table-striped">
+                  <table className="table mt-5 border table-striped">
                     <thead>
                       <tr>
                         <th>Description</th>
@@ -122,14 +147,14 @@ const InvoiceDisplay = () => {
                 </div>
                 <Link
                   to="/invoiceupdate"
-                  className="btn btn-primary btn-sm me-5"
+                  className="btn btn-primary me-4"
                   onClick={() => setUpdateId(inv.invoiceHeader.invoiceNo)}
                 >
                   Update
                 </Link>
                 <Link
                   to="/invoicedelete"
-                  className="btn btn-sm btn-primary "
+                  className="btn btn-primary"
                   onClick={() => setUpdateId(inv.invoiceHeader.invoiceNo)}
                 >
                   Delete
@@ -140,8 +165,28 @@ const InvoiceDisplay = () => {
           </div>
         </div>
       </div>
-    </>
+      {/* Pagination controls */}
+      <div>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default InvoiceDisplay;
+export default Pagination;

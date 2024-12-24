@@ -14,7 +14,7 @@ const Payment = () => {
     invoiceHeader: {
       date: new Date().toLocaleDateString("en-CA"), // auto generate today's date
 
-      cashAmount: 12,
+      cashAmount: 0,
       cardAmount: 0,
       creditAmount: 0,
     },

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const InvoiceDelete = () => {
   const { updateId, setUpdateId, invoice } = useContext(FormContext);
   const navigate = useNavigate();
+
   const handleDeleteInvoice = () => {
     if (!updateId) {
       alert("Please enter an Invoice ID.");
@@ -32,7 +33,7 @@ const InvoiceDelete = () => {
       .then((res) => {
         // Assuming the server returns the updated invoice data after deletion
         alert("Invoice deleted successfully:", res.data);
-        navigate("/");
+        navigate("/itemsearch");
         // Optionally update the state here if needed
       })
       .catch((err) => {

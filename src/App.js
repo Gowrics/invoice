@@ -7,6 +7,7 @@ import InvoiceDisplay from "./ItemSearch";
 import EditItems from "./EditItems";
 import InvoiceUpdate from "./InvoiceSearchById";
 import InvoiceDelete from "./InvoiceDelete";
+import Pagination from "./Pagination";
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
           <Route path="/itemsearch" element={<InvoiceDisplay />} />
           <Route path="/invoiceupdate" element={<InvoiceUpdate />} />
           <Route path="/invoicedelete" element={<InvoiceDelete />} />
+          <Route path="/pagination" element={<Pagination />} />
+          
         </Routes>
       </div>
     </Router>

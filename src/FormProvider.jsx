@@ -16,25 +16,6 @@ export const FormProvider = ({ children }) => {
     itemDiscount: "",
     netAmount: "",
   });
-  // //--------------------
-  // const [invoiceFormat, setInvoiceFormat] = useState({
-  //   invoiceHeader: {
-  //     date: new Date().toLocaleDateString(), // auto generate today's date
-  //     cashAmount: 0,
-  //     cardAmount: 0,
-  //     creditAmount: 0,
-  //   },
-  //   invoiceDetails: [
-  //     {
-  //       date: new Date().toLocaleDateString(),
-  //       itemdescription: "",
-  //       itemRate: 0,
-  //       itemQty: 0,
-  //       itemDiscount: 0.0,
-  //       netAmount: 0.0,
-  //     },
-  //   ],
-  // });
   // //-------------------------
   useEffect(() => {
     axios
@@ -43,11 +24,11 @@ export const FormProvider = ({ children }) => {
       .get("http://192.168.91.201:8082/invoice/getAll")
       .then((res) => {
         setInvoice(res.data); // Update the invoice state
-        console.log("Fetched invoicefg data:", invoice); // Log the fetched data, not the current state
+        // Log the fetched data, not the current state
       })
       .catch((err) => console.error("Error fetching invoice data:", err));
   }, []); // Add an empty dependency array to ensure it runs only once
-
+  console.log("Fetched invoice data:", invoice);
   //----------------------------
 
   //-----------------------------
@@ -100,7 +81,8 @@ export const FormProvider = ({ children }) => {
       };
       setInvoiceData(updatedInvoiceData);
     }
-
+    console.log("invpicedata  :", invoiceData);
+    console.log("invpicedata  :", updatableInvoice);
     let updatedForm = { ...form, [name]: value };
 
     if (name === "itemRate" || name === "itemQty") {
